@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - '3000:3000'
+    depends_on:
+      mongodb:
+        condition: service_started
+      redis:
+        condition: service_started
+    environment:
+      - PORT=3000
+      - MONGODB_URI=mongodb://mongodb:27017/driver_location
+      - REDIS_URL=redis://redis:6379
+    volumes:
+      - .:/app
+      - /app/node_modules
+    command: npm run start:dev
+
+  mongodb:
+    image: mongo:7.0
+    command: mongod --logpath /proc/self/fd/1 --logappend --quiet
+    ports:
+      - '27017:27017'
+    volumes:
+      - mongodb_data:/data/db
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - '6379:6379'
+
+volumes:
+  mongodb_data:
