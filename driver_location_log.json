@@ -1,0 +1,602 @@
+[
+  {
+    "driver_id": "driver_001",
+    "latitude": 1.342597,
+    "longitude": 103.864783,
+    "time_offset_sec": 0
+  },
+  {
+    "driver_id": "driver_001",
+    "latitude": 1.343967,
+    "longitude": 103.863148,
+    "time_offset_sec": 3
+  },
+  {
+    "driver_id": "driver_001",
+    "latitude": 1.342981,
+    "longitude": 103.863328,
+    "time_offset_sec": 7
+  },
+  {
+    "driver_id": "driver_001",
+    "latitude": 1.344559,
+    "longitude": 103.861217,
+    "time_offset_sec": 10
+  },
+  {
+    "driver_id": "driver_001",
+    "latitude": 1.34366,
+    "longitude": 103.860932,
+    "time_offset_sec": 17
+  },
+  {
+    "driver_id": "driver_001",
+    "latitude": 1.345264,
+    "longitude": 103.862464,
+    "time_offset_sec": 22
+  },
+  {
+    "driver_id": "driver_001",
+    "latitude": 1.344623,
+    "longitude": 103.862815,
+    "time_offset_sec": 25
+  },
+  {
+    "driver_id": "driver_001",
+    "latitude": 1.346821,
+    "longitude": 103.864199,
+    "time_offset_sec": 29
+  },
+  {
+    "driver_id": "driver_001",
+    "latitude": 1.348224,
+    "longitude": 103.864007,
+    "time_offset_sec": 33
+  },
+  {
+    "driver_id": "driver_001",
+    "latitude": 1.347862,
+    "longitude": 103.86571,
+    "time_offset_sec": 37
+  },
+  {
+    "driver_id": "driver_002",
+    "latitude": 1.350679,
+    "longitude": 103.8,
+    "time_offset_sec": 0
+  },
+  {
+    "driver_id": "driver_002",
+    "latitude": 1.350585,
+    "longitude": 103.80007,
+    "time_offset_sec": 7
+  },
+  {
+    "driver_id": "driver_002",
+    "latitude": 1.348486,
+    "longitude": 103.8,
+    "time_offset_sec": 12
+  },
+  {
+    "driver_id": "driver_002",
+    "latitude": 1.346641,
+    "longitude": 103.8,
+    "time_offset_sec": 19
+  },
+  {
+    "driver_id": "driver_002",
+    "latitude": 1.347465,
+    "longitude": 103.801035,
+    "time_offset_sec": 26
+  },
+  {
+    "driver_id": "driver_002",
+    "latitude": 1.348639,
+    "longitude": 103.803521,
+    "time_offset_sec": 31
+  },
+  {
+    "driver_id": "driver_002",
+    "latitude": 1.346396,
+    "longitude": 103.802441,
+    "time_offset_sec": 35
+  },
+  {
+    "driver_id": "driver_002",
+    "latitude": 1.348626,
+    "longitude": 103.803113,
+    "time_offset_sec": 38
+  },
+  {
+    "driver_id": "driver_002",
+    "latitude": 1.348945,
+    "longitude": 103.805597,
+    "time_offset_sec": 41
+  },
+  {
+    "driver_id": "driver_002",
+    "latitude": 1.350238,
+    "longitude": 103.807348,
+    "time_offset_sec": 46
+  },
+  {
+    "driver_id": "driver_003",
+    "latitude": 1.331251,
+    "longitude": 103.879191,
+    "time_offset_sec": 0
+  },
+  {
+    "driver_id": "driver_003",
+    "latitude": 1.328805,
+    "longitude": 103.877884,
+    "time_offset_sec": 3
+  },
+  {
+    "driver_id": "driver_003",
+    "latitude": 1.329538,
+    "longitude": 103.87776,
+    "time_offset_sec": 7
+  },
+  {
+    "driver_id": "driver_003",
+    "latitude": 1.328108,
+    "longitude": 103.877638,
+    "time_offset_sec": 12
+  },
+  {
+    "driver_id": "driver_003",
+    "latitude": 1.329418,
+    "longitude": 103.875327,
+    "time_offset_sec": 19
+  },
+  {
+    "driver_id": "driver_003",
+    "latitude": 1.331854,
+    "longitude": 103.875856,
+    "time_offset_sec": 25
+  },
+  {
+    "driver_id": "driver_003",
+    "latitude": 1.329477,
+    "longitude": 103.874381,
+    "time_offset_sec": 32
+  },
+  {
+    "driver_id": "driver_003",
+    "latitude": 1.331497,
+    "longitude": 103.874915,
+    "time_offset_sec": 36
+  },
+  {
+    "driver_id": "driver_003",
+    "latitude": 1.329753,
+    "longitude": 103.877248,
+    "time_offset_sec": 41
+  },
+  {
+    "driver_id": "driver_003",
+    "latitude": 1.331376,
+    "longitude": 103.875198,
+    "time_offset_sec": 44
+  },
+  {
+    "driver_id": "driver_004",
+    "latitude": 1.313715,
+    "longitude": 103.816358,
+    "time_offset_sec": 0
+  },
+  {
+    "driver_id": "driver_004",
+    "latitude": 1.315117,
+    "longitude": 103.817729,
+    "time_offset_sec": 6
+  },
+  {
+    "driver_id": "driver_004",
+    "latitude": 1.313993,
+    "longitude": 103.818398,
+    "time_offset_sec": 10
+  },
+  {
+    "driver_id": "driver_004",
+    "latitude": 1.313512,
+    "longitude": 103.816111,
+    "time_offset_sec": 14
+  },
+  {
+    "driver_id": "driver_004",
+    "latitude": 1.315729,
+    "longitude": 103.818136,
+    "time_offset_sec": 21
+  },
+  {
+    "driver_id": "driver_004",
+    "latitude": 1.316923,
+    "longitude": 103.816482,
+    "time_offset_sec": 25
+  },
+  {
+    "driver_id": "driver_004",
+    "latitude": 1.3184,
+    "longitude": 103.817935,
+    "time_offset_sec": 30
+  },
+  {
+    "driver_id": "driver_004",
+    "latitude": 1.31978,
+    "longitude": 103.819396,
+    "time_offset_sec": 35
+  },
+  {
+    "driver_id": "driver_004",
+    "latitude": 1.320601,
+    "longitude": 103.820387,
+    "time_offset_sec": 40
+  },
+  {
+    "driver_id": "driver_004",
+    "latitude": 1.322809,
+    "longitude": 103.820629,
+    "time_offset_sec": 46
+  },
+  {
+    "driver_id": "driver_005",
+    "latitude": 1.306921,
+    "longitude": 103.858259,
+    "time_offset_sec": 0
+  },
+  {
+    "driver_id": "driver_005",
+    "latitude": 1.30629,
+    "longitude": 103.85612,
+    "time_offset_sec": 6
+  },
+  {
+    "driver_id": "driver_005",
+    "latitude": 1.30502,
+    "longitude": 103.857079,
+    "time_offset_sec": 10
+  },
+  {
+    "driver_id": "driver_005",
+    "latitude": 1.305876,
+    "longitude": 103.855611,
+    "time_offset_sec": 14
+  },
+  {
+    "driver_id": "driver_005",
+    "latitude": 1.305878,
+    "longitude": 103.855637,
+    "time_offset_sec": 19
+  },
+  {
+    "driver_id": "driver_005",
+    "latitude": 1.306803,
+    "longitude": 103.856456,
+    "time_offset_sec": 23
+  },
+  {
+    "driver_id": "driver_005",
+    "latitude": 1.305197,
+    "longitude": 103.858256,
+    "time_offset_sec": 29
+  },
+  {
+    "driver_id": "driver_005",
+    "latitude": 1.303062,
+    "longitude": 103.860474,
+    "time_offset_sec": 33
+  },
+  {
+    "driver_id": "driver_005",
+    "latitude": 1.30488,
+    "longitude": 103.861312,
+    "time_offset_sec": 36
+  },
+  {
+    "driver_id": "driver_005",
+    "latitude": 1.302795,
+    "longitude": 103.860078,
+    "time_offset_sec": 40
+  },
+  {
+    "driver_id": "driver_006",
+    "latitude": 1.353741,
+    "longitude": 103.855472,
+    "time_offset_sec": 0
+  },
+  {
+    "driver_id": "driver_006",
+    "latitude": 1.352941,
+    "longitude": 103.854159,
+    "time_offset_sec": 4
+  },
+  {
+    "driver_id": "driver_006",
+    "latitude": 1.353285,
+    "longitude": 103.854593,
+    "time_offset_sec": 10
+  },
+  {
+    "driver_id": "driver_006",
+    "latitude": 1.354211,
+    "longitude": 103.85409,
+    "time_offset_sec": 15
+  },
+  {
+    "driver_id": "driver_006",
+    "latitude": 1.35185,
+    "longitude": 103.855716,
+    "time_offset_sec": 21
+  },
+  {
+    "driver_id": "driver_006",
+    "latitude": 1.353476,
+    "longitude": 103.85351,
+    "time_offset_sec": 26
+  },
+  {
+    "driver_id": "driver_006",
+    "latitude": 1.35477,
+    "longitude": 103.852865,
+    "time_offset_sec": 30
+  },
+  {
+    "driver_id": "driver_006",
+    "latitude": 1.356933,
+    "longitude": 103.851012,
+    "time_offset_sec": 37
+  },
+  {
+    "driver_id": "driver_006",
+    "latitude": 1.355014,
+    "longitude": 103.852259,
+    "time_offset_sec": 40
+  },
+  {
+    "driver_id": "driver_006",
+    "latitude": 1.357116,
+    "longitude": 103.854395,
+    "time_offset_sec": 43
+  },
+  {
+    "driver_id": "driver_007",
+    "latitude": 1.342778,
+    "longitude": 103.877917,
+    "time_offset_sec": 0
+  },
+  {
+    "driver_id": "driver_007",
+    "latitude": 1.341502,
+    "longitude": 103.877935,
+    "time_offset_sec": 3
+  },
+  {
+    "driver_id": "driver_007",
+    "latitude": 1.342698,
+    "longitude": 103.88,
+    "time_offset_sec": 9
+  },
+  {
+    "driver_id": "driver_007",
+    "latitude": 1.343157,
+    "longitude": 103.88,
+    "time_offset_sec": 15
+  },
+  {
+    "driver_id": "driver_007",
+    "latitude": 1.342843,
+    "longitude": 103.88,
+    "time_offset_sec": 22
+  },
+  {
+    "driver_id": "driver_007",
+    "latitude": 1.34244,
+    "longitude": 103.878479,
+    "time_offset_sec": 26
+  },
+  {
+    "driver_id": "driver_007",
+    "latitude": 1.343197,
+    "longitude": 103.876512,
+    "time_offset_sec": 30
+  },
+  {
+    "driver_id": "driver_007",
+    "latitude": 1.344752,
+    "longitude": 103.876653,
+    "time_offset_sec": 34
+  },
+  {
+    "driver_id": "driver_007",
+    "latitude": 1.344027,
+    "longitude": 103.87728,
+    "time_offset_sec": 37
+  },
+  {
+    "driver_id": "driver_007",
+    "latitude": 1.346027,
+    "longitude": 103.875786,
+    "time_offset_sec": 43
+  },
+  {
+    "driver_id": "driver_008",
+    "latitude": 1.3238,
+    "longitude": 103.802374,
+    "time_offset_sec": 0
+  },
+  {
+    "driver_id": "driver_008",
+    "latitude": 1.326017,
+    "longitude": 103.801842,
+    "time_offset_sec": 7
+  },
+  {
+    "driver_id": "driver_008",
+    "latitude": 1.326738,
+    "longitude": 103.803958,
+    "time_offset_sec": 13
+  },
+  {
+    "driver_id": "driver_008",
+    "latitude": 1.326386,
+    "longitude": 103.804067,
+    "time_offset_sec": 18
+  },
+  {
+    "driver_id": "driver_008",
+    "latitude": 1.326726,
+    "longitude": 103.802224,
+    "time_offset_sec": 22
+  },
+  {
+    "driver_id": "driver_008",
+    "latitude": 1.327911,
+    "longitude": 103.804197,
+    "time_offset_sec": 27
+  },
+  {
+    "driver_id": "driver_008",
+    "latitude": 1.326027,
+    "longitude": 103.801781,
+    "time_offset_sec": 32
+  },
+  {
+    "driver_id": "driver_008",
+    "latitude": 1.327393,
+    "longitude": 103.801859,
+    "time_offset_sec": 36
+  },
+  {
+    "driver_id": "driver_008",
+    "latitude": 1.329539,
+    "longitude": 103.802008,
+    "time_offset_sec": 41
+  },
+  {
+    "driver_id": "driver_008",
+    "latitude": 1.33162,
+    "longitude": 103.801973,
+    "time_offset_sec": 44
+  },
+  {
+    "driver_id": "driver_009",
+    "latitude": 1.33173,
+    "longitude": 103.859097,
+    "time_offset_sec": 0
+  },
+  {
+    "driver_id": "driver_009",
+    "latitude": 1.331678,
+    "longitude": 103.861102,
+    "time_offset_sec": 6
+  },
+  {
+    "driver_id": "driver_009",
+    "latitude": 1.329512,
+    "longitude": 103.860356,
+    "time_offset_sec": 13
+  },
+  {
+    "driver_id": "driver_009",
+    "latitude": 1.331343,
+    "longitude": 103.862163,
+    "time_offset_sec": 18
+  },
+  {
+    "driver_id": "driver_009",
+    "latitude": 1.329411,
+    "longitude": 103.861696,
+    "time_offset_sec": 24
+  },
+  {
+    "driver_id": "driver_009",
+    "latitude": 1.329714,
+    "longitude": 103.859257,
+    "time_offset_sec": 29
+  },
+  {
+    "driver_id": "driver_009",
+    "latitude": 1.331144,
+    "longitude": 103.858803,
+    "time_offset_sec": 36
+  },
+  {
+    "driver_id": "driver_009",
+    "latitude": 1.33142,
+    "longitude": 103.858642,
+    "time_offset_sec": 41
+  },
+  {
+    "driver_id": "driver_009",
+    "latitude": 1.33305,
+    "longitude": 103.857655,
+    "time_offset_sec": 45
+  },
+  {
+    "driver_id": "driver_009",
+    "latitude": 1.331435,
+    "longitude": 103.859026,
+    "time_offset_sec": 50
+  },
+  {
+    "driver_id": "driver_010",
+    "latitude": 1.300508,
+    "longitude": 103.839371,
+    "time_offset_sec": 0
+  },
+  {
+    "driver_id": "driver_010",
+    "latitude": 1.300699,
+    "longitude": 103.837318,
+    "time_offset_sec": 7
+  },
+  {
+    "driver_id": "driver_010",
+    "latitude": 1.302267,
+    "longitude": 103.838272,
+    "time_offset_sec": 11
+  },
+  {
+    "driver_id": "driver_010",
+    "latitude": 1.303713,
+    "longitude": 103.838421,
+    "time_offset_sec": 14
+  },
+  {
+    "driver_id": "driver_010",
+    "latitude": 1.305625,
+    "longitude": 103.839999,
+    "time_offset_sec": 20
+  },
+  {
+    "driver_id": "driver_010",
+    "latitude": 1.30349,
+    "longitude": 103.841213,
+    "time_offset_sec": 24
+  },
+  {
+    "driver_id": "driver_010",
+    "latitude": 1.304652,
+    "longitude": 103.842539,
+    "time_offset_sec": 29
+  },
+  {
+    "driver_id": "driver_010",
+    "latitude": 1.304107,
+    "longitude": 103.842049,
+    "time_offset_sec": 33
+  },
+  {
+    "driver_id": "driver_010",
+    "latitude": 1.301829,
+    "longitude": 103.840702,
+    "time_offset_sec": 38
+  },
+  {
+    "driver_id": "driver_010",
+    "latitude": 1.300155,
+    "longitude": 103.840475,
+    "time_offset_sec": 41
+  }
+]
