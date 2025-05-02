@@ -6,7 +6,7 @@ A **Dockerized** NestJS microservice for real-time driver location tracking in a
 2. Implement a POST `/location` endpoint to ingest driver location updates.
 3. Store updates in MongoDB, cache in Redis, provide a GET `/location` endpoint, and support optional historical tracking via GET `/location/history`.
 
-The solution is production-ready, leveraging dependency injection, robust error handling, and TypeScript’s type safety. It is optimized for high-frequency updates (100 updates, \~2 requests/second) and scalable to 10,000–100,000 drivers. Tools include NestJS, MongoDB, Redis, Docker, Prettier, ESLint, and Jest/Supertest for optional unit tests.
+The solution is production-ready, leveraging dependency injection, robust error handling, and TypeScript’s type safety. It is optimized for high-frequency updates (100 updates, \~2 requests/second) and scalable to 10,000–100,000 drivers.
 
 ## Features
 
@@ -34,7 +34,36 @@ The solution is production-ready, leveraging dependency injection, robust error 
   * macOS/Linux: [Docker Desktop](https://www.docker.com/products/docker-desktop/).
   * Windows: Docker Desktop with WSL 2 (preferred) or Git Bash with `awk` (`winget install GnuWin32.Gawk`).
 
-## Setup
+## 🐳 Docker Installation (Windows)
+
+To run this project in a consistent, containerized environment, Docker and Docker Compose are required.
+
+### ✅ Recommended: Docker Desktop
+
+1. **Install WSL 2 (Windows Subsystem for Linux)**
+   * Open **PowerShell as Administrator** and run:
+
+     `wsl --install
+     `
+   * Restart your computer if prompted.
+   * Verify installation:
+
+     `wsl --status
+     `
+2. **Download and Install Docker Desktop**
+   * Download: https://www.docker.com/products/docker-desktop/
+   * Run the installer and follow the instructions.
+   * Ensure **WSL 2 integration** is enabled in Docker settings after installation.
+3. **Start Docker and Verify**
+   * Docker Desktop should start automatically.
+   * Verify installation:
+
+     `docker --version && docker compose version
+     `
+
+📝 **Tip**: On Windows, use **Git Bash** or **WSL terminal** instead of `cmd.exe` to run shell scripts like `start.sh`.
+
+## Project Setup
 
 ### Docker (Recommended)
 
@@ -43,7 +72,7 @@ The solution is production-ready, leveraging dependency injection, robust error 
 
    `npm install
    `
-3. Start services:
+3. Start services (Please make sure you use Git Bash instead of CMD if you're using Windows):
 
    `./start.sh
    `
@@ -101,13 +130,13 @@ The solution is production-ready, leveraging dependency injection, robust error 
 
 **Achievement**:
 
-* A **TypeScript** script (src/scripts/publish-location.ts) reads driver_location_log.json using fs.
+* A **TypeScript** script _(src/scripts/publish-location.ts)_ reads **driver_location_log.json** using fs.
 * Iterates through 100 updates, sending each to POST /location via **Axios** at time_offset_sec intervals using setTimeout.
 * Logs successes and failures, ensuring synchronous, sequential publishing (\~50s total).
 
 **Testing**:
 
-1. Place driver_location_log.json in the project root.
+1. Place **driver_location_log.json** in the project root.
 2. Start the API:
 
    `./start.sh`
