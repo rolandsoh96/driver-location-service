@@ -50,12 +50,13 @@ export class LocationController {
       );
     }
 
-    const history = await this.locationService.getLocationHistory(
-      driverId,
-      new Date(startTime),
-      new Date(endTime),
-    );
+    const start = new Date(startTime);
+    const end = new Date(endTime);
 
-    return history;
+    if (isNaN(start.getTime()) || isNaN(end.getTime())) {
+      throw new BadRequestException('Invalid start_time or end_time');
+    }
+
+    return this.locationService.getLocationHistory(driverId, start, end);
   }
 }

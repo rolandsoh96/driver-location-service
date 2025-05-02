@@ -1,22 +1,28 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Inject } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import Redis from 'ioredis';
 import { Location, LocationHistory } from './location.schema';
 import { CreateLocationDto } from './location.dto';
+import { REDIS_CLIENT } from '../redis.module';
+
+interface LocationData {
+  driver_id: string;
+  latitude: number;
+  longitude: number;
+  updated_at: string;
+}
 
 @Injectable()
 export class LocationService {
-  private redis: Redis;
   private readonly CACHE_TTL = 60 * 60; // 1 hour in seconds
 
   constructor(
     @InjectModel(Location.name) private locationModel: Model<Location>,
     @InjectModel(LocationHistory.name)
     private locationHistoryModel: Model<LocationHistory>,
-  ) {
-    this.redis = new Redis(process.env.REDIS_URL ?? 'redis://localhost:6379');
-  }
+    @Inject(REDIS_CLIENT) private readonly redis: Redis,
+  ) {}
 
   async saveLocation(dto: CreateLocationDto): Promise<void> {
     const { driver_id, latitude, longitude } = dto;
@@ -54,7 +60,11 @@ export class LocationService {
     const cachedLocation = await this.redis.get(`driver:${driverId}`);
 
     if (cachedLocation) {
-      return JSON.parse(cachedLocation) as Location;
+      const parsed = JSON.parse(cachedLocation) as LocationData;
+      return {
+        ...parsed,
+        updated_at: new Date(parsed.updated_at),
+      } as Location;
     }
 
     const location = await this.locationModel

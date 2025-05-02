@@ -3,7 +3,7 @@ import { Document } from 'mongoose';
 
 @Schema()
 export class Location extends Document {
-  @Prop({ required: true, unique: true })
+  @Prop({ required: true, index: true, unique: true })
   driver_id: string;
 
   @Prop({ required: true })
@@ -17,7 +17,6 @@ export class Location extends Document {
 }
 
 export const LocationSchema = SchemaFactory.createForClass(Location);
-LocationSchema.index({ driver_id: 1 }, { unique: true });
 
 @Schema()
 export class LocationHistory extends Document {
