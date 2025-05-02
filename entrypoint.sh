@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 echo "🚀 NestJS Server URL: http://localhost:${PORT:-3000}"
 echo "🍃 MongoDB URL: ${MONGODB_URI}"
