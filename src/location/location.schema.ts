@@ -17,6 +17,7 @@ export class Location extends Document {
 }
 
 export const LocationSchema = SchemaFactory.createForClass(Location);
+LocationSchema.index({ driver_id: 1 }, { unique: true });
 
 @Schema()
 export class LocationHistory extends Document {
@@ -33,5 +34,6 @@ export class LocationHistory extends Document {
   timestamp: Date;
 }
 
-export const LocationHistorySchema =
-  SchemaFactory.createForClass(LocationHistory);
+export const LocationHistorySchema = SchemaFactory.createForClass(LocationHistory);
+LocationHistorySchema.index({ driver_id: 1, timestamp: -1 });
+LocationHistorySchema.index({ timestamp: 1 }, { expireAfterSeconds: 30 * 24 * 60 * 60 });
