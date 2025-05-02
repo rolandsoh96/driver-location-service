@@ -14,7 +14,7 @@ export class LocationService {
     @InjectModel(LocationHistory.name)
     private locationHistoryModel: Model<LocationHistory>,
   ) {
-    this.redis = new Redis(process.env.REDIS_URL || 'redis://localhost:6379');
+    this.redis = new Redis(process.env.REDIS_URL ?? 'redis://localhost:6379');
   }
 
   async saveLocation(dto: CreateLocationDto): Promise<void> {

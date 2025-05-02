@@ -6,7 +6,7 @@ import { APP_PIPE } from '@nestjs/core';
 @Module({
   imports: [
     MongooseModule.forRoot(
-      process.env.MONGODB_URI || 'mongodb://localhost:27017/driver_location',
+      process.env.MONGODB_URI ?? 'mongodb://localhost:27017/driver_location',
     ),
     LocationModule,
   ],
