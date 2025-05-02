@@ -8,6 +8,7 @@ import {
   LocationHistory,
   LocationHistorySchema,
 } from './location.schema';
+import { RedisModule } from '../redis.module';
 
 @Module({
   imports: [
@@ -15,6 +16,7 @@ import {
       { name: Location.name, schema: LocationSchema },
       { name: LocationHistory.name, schema: LocationHistorySchema },
     ]),
+    RedisModule,
   ],
   controllers: [LocationController],
   providers: [LocationService],
