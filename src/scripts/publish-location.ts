@@ -11,7 +11,7 @@ interface LocationLog {
 
 async function publishUpdates() {
   const filePath = path.join(__dirname, '../../driver_location_log.json');
-  const logs: LocationLog[] = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
+  const logs = JSON.parse(fs.readFileSync(filePath, 'utf-8')) as LocationLog[];
   const T0 = Date.now();
   let successCount = 0;
   let errorCount = 0;
@@ -31,9 +31,11 @@ async function publishUpdates() {
       );
     } catch (error) {
       errorCount++;
+      const errorMessage =
+        error instanceof Error ? error.message : 'Unknown error';
       console.error(
         `Error sending update for driver ${log.driver_id}:`,
-        error.message,
+        errorMessage,
       );
     }
   }
