@@ -1,28 +1,68 @@
 #!/bin/bash
 
-set -e
+   set -e
 
-if [ "$1" = "clean" ]; then
-    echo "🧹 Completely cleaning up Docker environment..."
+   # Ports used by the project
+   PORTS=(3000 27017 6379)
 
-    # Stop and remove all docker-compose resources
-    docker-compose down --remove-orphans
+   # Check for Docker and Docker Compose
+   if ! command -v docker &>/dev/null || ! command -v docker-compose &>/dev/null; then
+     echo "Error: Docker and Docker Compose are required."
+     exit 1
+   fi
 
-    # Stop and remove all containers using the Redis port (6379)
-    REDIS_PORT=6379
-    REDIS_CONTAINERS=$(docker ps -q --filter "publish=${REDIS_PORT}")
-    if [ -n "$REDIS_CONTAINERS" ]; then
-        echo "🔥 Stopping and removing containers using port ${REDIS_PORT}..."
-        docker stop $REDIS_CONTAINERS
-        docker rm $REDIS_CONTAINERS
-    fi
+   full_cleanup() {
+     echo -e "\n🧹 Cleaning up Docker environment..."
 
-    # Remove dangling and unused images
-    docker image prune -af
+     # Stop and remove containers, networks, and volumes
+     docker-compose down --remove-orphans -v || true
 
-    # Force rebuild all images without cache
-    docker-compose build --no-cache
-fi
+     # Kill any external process using project ports
+     for PORT in "${PORTS[@]}"; do
+       if command -v lsof &>/dev/null; then
+         PORT_USERS=$(lsof -t -i:$PORT)
+         if [ -n "$PORT_USERS" ]; then
+           echo "🔥 Killing external processes on port $PORT..."
+           kill -9 $PORT_USERS || true
+         fi
+       elif command -v netstat &>/dev/null; then
+         # Windows-compatible netstat
+         PID=$(netstat -aon | findstr :$PORT | awk '{print $5}' | head -n 1)
+         if [ -n "$PID" ]; then
+           echo "🔥 Killing process using port $PORT (PID: $PID)..."
+           taskkill /PID $PID /F || true
+         fi
+       fi
 
-echo "🚀 Starting Docker Compose environment..."
-docker-compose up
+       # Remove containers bound to port
+       containers=$(docker ps -q --filter "publish=$PORT")
+       if [ -n "$containers" ]; then
+         echo "🔥 Removing Docker containers using port $PORT..."
+         docker rm -f $containers || true
+       fi
+     done
+
+     # Remove only project-specific images
+     docker images -q driver-location-service_app | sort -u | xargs docker rmi -f || true
+
+     # Run npm install to ensure dependencies are updated
+     echo "📦 Running npm install to ensure dependencies..."
+     npm install || true
+
+     # Rebuild all containers
+     docker-compose build --no-cache
+   }
+
+   # Handle Ctrl+C (SIGINT)
+   trap 'echo -e "\n🛑 Caught interrupt. Stopping..."; full_cleanup; exit 0' SIGINT
+
+   # Run clean mode
+   if [ "$1" = "clean" ]; then
+     full_cleanup
+   fi
+
+   echo "📦 Ensuring dependencies are installed..."
+   npm install || true
+
+   echo "🚀 Starting Docker Compose environment..."
+   docker-compose up
