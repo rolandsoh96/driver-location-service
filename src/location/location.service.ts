@@ -8,6 +8,7 @@ import { CreateLocationDto } from './location.dto';
 @Injectable()
 export class LocationService {
   private redis: Redis;
+  private readonly CACHE_TTL = 60 * 60; // 1 hour in seconds
 
   constructor(
     @InjectModel(Location.name) private locationModel: Model<Location>,
@@ -35,7 +36,11 @@ export class LocationService {
       updated_at: currentTime,
     } as Location;
 
-    await this.redis.set(`driver:${driver_id}`, JSON.stringify(locationData));
+    await this.redis.setex(
+      `driver:${driver_id}`,
+      this.CACHE_TTL,
+      JSON.stringify(locationData)
+    );
 
     await this.locationHistoryModel.create({
       driver_id,
@@ -57,7 +62,11 @@ export class LocationService {
       .lean();
 
     if (location) {
-      await this.redis.set(`driver:${driverId}`, JSON.stringify(location));
+      await this.redis.setex(
+        `driver:${driverId}`,
+        this.CACHE_TTL,
+        JSON.stringify(location)
+      );
       return location;
     }
 
