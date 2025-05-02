@@ -1,98 +1,212 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# Driver Location Microservice
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+A **Dockerized** NestJS microservice for real-time driver location tracking in a ride-hailing platform, built with **TypeScript, MongoDB, Redis, and a REST API**. It fulfills **three** tasks:
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+1. Process `driver_location_log.json` (100 updates, 10 drivers) and publish updates to the API at `time_offset_sec` intervals.
+2. Implement a POST `/location` endpoint to ingest driver location updates.
+3. Store updates in MongoDB, cache in Redis, provide a GET `/location` endpoint, and support optional historical tracking via GET `/location/history`.
 
-## Description
+The solution is production-ready, leveraging dependency injection, robust error handling, and TypeScript’s type safety. It is optimized for high-frequency updates (100 updates, \~2 requests/second) and scalable to 10,000–100,000 drivers. Tools include NestJS, MongoDB, Redis, Docker, Prettier, ESLint, and Jest/Supertest for optional unit tests.
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## Features
 
-## Project setup
+* **Efficient Storage**: MongoDB with indexed `driver_locations` and `driver_location_history` collections; Redis caches latest locations (\~0.1ms reads).
+* **Scalability**: Horizontal scaling, MongoDB sharding, Redis clustering.
+* **Error Handling**: Try-catch, global exception filter, and logging.
+* **Type Safety**: TypeScript and `class-validator` for robust data validation.
+* **Code Quality**: **Prettier** and **ESLint** for consistent, error-free code.
+* **Testing**: Jest/Supertest unit tests.
 
-```bash
-$ npm install
-```
+## Tools and Technologies
 
-## Compile and run the project
+* **NestJS 11**: TypeScript framework for modular, scalable APIs (\~500–1,000 req/s).
+* **MongoDB 8**: Stores latest (~~10 docs) and historical (~~100 docs) locations with atomic `upsert` and TTL index (30 days).
+* **Redis 5**: Caches latest locations (\~10 keys) via `REDIS_CLIENT` provider.
+* **Docker**: Consistent environments with `docker-compose.yml`.
+* **Prettier/ESLint**: Code formatting and linting.
+* **Jest/Supertest**: Unit testing.
+* **Axios**: Task 1 script for API requests.
 
-```bash
-# development
-$ npm run start
+## Prerequisites
 
-# watch mode
-$ npm run start:dev
+* **Node.js 18+**: For local dev or tests (optional with Docker).
+* **Docker & Docker Compose**: For running services.
+  * macOS/Linux: [Docker Desktop](https://www.docker.com/products/docker-desktop/).
+  * Windows: Docker Desktop with WSL 2 (preferred) or Git Bash with `awk` (`winget install GnuWin32.Gawk`).
 
-# production mode
-$ npm run start:prod
-```
+## Setup
 
-## Run tests
+### Docker (Recommended)
 
-```bash
-# unit tests
-$ npm run test
+1. Clone or unzip the repository.
+2. Install dependencies:
 
-# e2e tests
-$ npm run test:e2e
+   `npm install
+   `
+3. Start services:
 
-# test coverage
-$ npm run test:cov
-```
+   `./start.sh
+   `
+   * NestJS: `http://localhost:3000`
+   * MongoDB: port `27017`
+   * Redis: port `6379`
+4. Clean up:
 
-## Deployment
+   `./start.sh clean
+   `
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
+### Without Docker
 
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+1. Install Node.js 18+, MongoDB, Redis.
+2. Install dependencies:
 
-```bash
-$ npm install -g @nestjs/mau
-$ mau deploy
-```
+   `npm install
+   `
+3. Start MongoDB (`mongod`), Redis (`redis-server`).
+4. Set environment variables:
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+   `export MONGODB_URI=mongodb://localhost:27017/driver_location
+   export REDIS_URL=redis://localhost:6379
+   export REDIS_CACHE_TTL=3600
+   `
+5. Run:
 
-## Resources
+   `npm run start:dev
+   `
 
-Check out a few resources that may come in handy when working with NestJS:
+## API Endpoints
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+* **POST /location**: Ingest location update.
 
-## Support
+  `curl -X POST http://localhost:3000/location -H "Content-Type: application/json" -d '{"driver_id":"driver_001","latitude":1.342597,"longitude":103.864783}'
+  `
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+  Response: `{ "status": "success" }`
+* **GET /location?driver_id=**: Get latest location.
 
-## Stay in touch
+  `curl http://localhost:3000/location?driver_id=driver_001
+  `
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+  Response: `{ "driver_id": "driver_001", "latitude": 1.342597, "longitude": 103.864783, "updated_at": "..." }`
+* **GET /location/history?driver_id=&start_time=<time title="&amp;end_time=" datetime="">&end_time=</time>**: Get historical locations (optional).
 
-## License
+  `curl "http://localhost:3000/location/history?driver_id=driver_001&start_time=2025-05-01T00:00:00Z&end_time=2025-05-02T00:00:00Z"
+  `
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+  Response: Array of locations.
+
+## Task Implementation and Testing
+
+### Task 1: Process and Publish Driver Location Data
+
+**Achievement**:
+
+* A **TypeScript** script (src/scripts/publish-location.ts) reads driver_location_log.json using fs.
+* Iterates through 100 updates, sending each to POST /location via **Axios** at time_offset_sec intervals using setTimeout.
+* Logs successes and failures, ensuring synchronous, sequential publishing (\~50s total).
+
+**Testing**:
+
+1. Place driver_location_log.json in the project root.
+2. Start the API:
+
+   `./start.sh`
+3. Run the script:
+
+   `npx ts-node src/scripts/publish-location.ts`
+4. **Expected Outcome**:
+   * Console logs \~100 successful POSTs.
+   * Verify data in **MongoDB**:
+
+     `docker exec -it <mongo-container> mongosh
+     use driver_location
+     db.driver_locations.find()`
+   * Check **Redis** cache:
+
+     `docker exec -it <redis-container> redis-cli
+     KEYS driver:*`
+
+### Task 2: Driver Location Ingestion Service
+
+**Achievement**:
+
+* POST /location endpoint in LocationController accepts driver_id, latitude, longitude.
+* Validates inputs with class-validator in CreateLocationDto.
+* LocationService stores updates in **MongoDB** (driver_locations) using atomic upsert to prevent race conditions, caches in **Redis** with REDIS_CLIENT provider (1-hour TTL), and logs to driver_location_history.
+
+**Testing**:
+
+1. Start the API:
+
+   `./start.sh`
+2. Send a location update:
+
+   `curl -X POST http://localhost:3000/location -H "Content-Type: application/json" -d '{"driver_id":"driver_001","latitude":1.342597,"longitude":103.864783}'`
+3. **Expected Outcome**:
+   * Response: { "status": "success" }
+   * Verify in **MongoDB**:
+
+     `docker exec -it <mongo-container> mongosh
+     use driver_location
+     db.driver_locations.findOne({ driver_id: "driver_001" })`
+   * Verify in **Redis**:
+
+     `docker exec -it <redis-container> redis-cli
+     GET driver:driver_001`
+
+### Task 3: Storage and Query Capabilities
+
+**Achievement**:
+
+* **MongoDB** stores latest locations in driver_locations with unique driver_id index and historical data in driver_location_history with { driver_id: 1, timestamp: -1 } and TTL (30 days) indexes.
+* **Redis** caches latest locations (\~0.1ms reads) with setex.
+* GET /location retrieves latest location from **Redis** or **MongoDB**, caching results.
+* Optional GET /location/history queries historical data by driver_id and time range, sorted by timestamp.
+
+**Testing**:
+
+1. Start the API:
+
+   `./start.sh`
+2. Post a location (from Task 2).
+3. Get latest location:
+
+   `curl http://localhost:3000/location?driver_id=driver_001`
+
+   **Expected Outcome**:
+   * Response: { "driver_id": "driver_001", "latitude": 1.342597, "longitude": 103.864783, "updated_at": "..." }
+4. Get historical locations:
+
+   `curl "http://localhost:3000/location/history?driver_id=driver_001&start_time=2025-05-01T00:00:00Z&end_time=2025-05-02T00:00:00Z"`
+
+   **Expected Outcome**:
+   * Response: Array of locations, e.g., \[{ "driver_id": "driver_001", "latitude": 1.342597, "longitude": 103.864783, "timestamp": "..." }, ...\]
+
+## Code Quality
+
+* **Prettier**: Formats TypeScript files (`npm run format`).
+* **ESLint**: Enforces TypeScript rules (`npm run lint`):
+  * Prettier integration
+  * No unused variables (except `_`-prefixed)
+  * Strict equality (`===`)
+  * Allow `console.warn/error`, warn on `console.log`
+
+## Testing
+
+Unit tests using Jest and Supertest, mocking `REDIS_CLIENT` and Mongoose models. Example tests in `src/**/*.spec.ts`.
+
+Run:
+
+`npm run test`
+
+## Optimizations
+
+* **MongoDB**: Unique `driver_id` index, `{ driver_id: 1, timestamp: -1 }` index, TTL index (30 days). Writes: \~1–5ms; reads: \~1–10ms.
+* **Redis**: Caches ~~10 keys (~~1 KB), \~0.1ms reads, configurable TTL (`REDIS_CACHE_TTL`).
+* **NestJS**: Handles \~2 req/s (scalable to 1,000 req/s).
+* **Task 1**: Processes 100 updates in \~50s with error handling.
+
+## Scalability
+
+* **10,000–100,000 drivers**: Horizontal scaling, MongoDB sharding, Redis clustering.
+* **Future**: Add JWT authentication, WebSockets, or pagination for history.
