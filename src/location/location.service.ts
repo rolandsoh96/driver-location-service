@@ -39,7 +39,7 @@ export class LocationService {
     await this.redis.setex(
       `driver:${driver_id}`,
       this.CACHE_TTL,
-      JSON.stringify(locationData)
+      JSON.stringify(locationData),
     );
 
     await this.locationHistoryModel.create({
@@ -65,7 +65,7 @@ export class LocationService {
       await this.redis.setex(
         `driver:${driverId}`,
         this.CACHE_TTL,
-        JSON.stringify(location)
+        JSON.stringify(location),
       );
       return location;
     }

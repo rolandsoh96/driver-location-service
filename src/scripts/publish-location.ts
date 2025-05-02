@@ -18,7 +18,7 @@ async function publishUpdates() {
 
   for (const log of logs) {
     const delay = log.time_offset_sec * 1000 - (Date.now() - T0);
-    if (delay > 0) await new Promise(resolve => setTimeout(resolve, delay));
+    if (delay > 0) await new Promise((resolve) => setTimeout(resolve, delay));
     try {
       await axios.post('http://localhost:3000/location', {
         driver_id: log.driver_id,
@@ -26,10 +26,15 @@ async function publishUpdates() {
         longitude: log.longitude,
       });
       successCount++;
-      console.log(`Sent update ${successCount} for driver ${log.driver_id} at ${log.time_offset_sec}s`);
+      console.log(
+        `Sent update ${successCount} for driver ${log.driver_id} at ${log.time_offset_sec}s`,
+      );
     } catch (error) {
       errorCount++;
-      console.error(`Error sending update for driver ${log.driver_id}:`, error.message);
+      console.error(
+        `Error sending update for driver ${log.driver_id}:`,
+        error.message,
+      );
     }
   }
   console.log(`Completed: ${successCount} successful, ${errorCount} failed`);
